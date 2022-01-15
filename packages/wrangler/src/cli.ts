@@ -1,18 +1,25 @@
 import * as Sentry from "@sentry/node";
 import process from "process";
 import { hideBin } from "yargs/helpers";
+import { RewriteFrames } from "@sentry/integrations";
 
 import { main } from ".";
 import * as pkj from "../package.json";
 
 Sentry.init({
-  release: `${pkj.name}@${pkj.version}`,
+  release: `${pkj.name}@0.0.11`,
   initialScope: {
-    tags: { Wrangler2: pkj.version },
+    tags: { [pkj.name]: pkj.version },
   },
-  dsn: "https://16a2bd8e7c3a42e8bc3bcc8277d179f4@sentry10.cfdata.org/354",
+  dsn: "https://87383452498e420ebdb01de6100e44ec@o226679.ingest.sentry.io/6139281",
   tracesSampleRate: 1.0,
-  integrations: [new Sentry.Integrations.Http({ tracing: true })],
+  integrations: [
+    new RewriteFrames({
+      root: "",
+      prefix: "/",
+    }),
+    new Sentry.Integrations.Http({ tracing: true }),
+  ],
 });
 
 process.on("uncaughtExceptionMonitor", (err, origin) => {
