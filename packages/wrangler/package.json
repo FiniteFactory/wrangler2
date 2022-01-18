@@ -36,8 +36,8 @@
     "cli"
   ],
   "dependencies": {
-    "@sentry/cli": "^1.71.0",
     "@sentry/integrations": "^6.16.1",
+    "@sentry/node": "^6.16.1",
     "esbuild": "0.14.1",
     "esbuild-plugin-replace": "^1.1.0",
     "miniflare": "2.0.0-rc.5",
@@ -50,6 +50,7 @@
   "devDependencies": {
     "@babel/types": "^7.16.0",
     "@iarna/toml": "^2.2.5",
+    "@sentry/cli": "^1.71.0",
     "@types/estree": "^0.0.50",
     "@types/mime": "^2.0.3",
     "@types/react": "^17.0.37",
